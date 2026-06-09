@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nguyen Do Huy Hoang — IT Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0D0F12; --surface: #161920; --surface2: #1E2229;
+  --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.13);
+  --accent: #3B82F6; --accent2: #60A5FA; --green: #22C55E;
+  --amber: #F59E0B; --red: #EF4444;
+  --text: #F1F5F9; --muted: #94A3B8; --faint: #475569;
+  --mono: 'JetBrains Mono', monospace; --sans: 'Inter', sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,15,18,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:960px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.nav-logo{font-family:var(--mono);font-size:13px;color:var(--accent2);text-decoration:none;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+
+.wrap{max-width:960px;margin:auto;padding:0 24px;}
+
+/* Hero */
+#hero{padding:148px 24px 80px;max-width:960px;margin:auto;}
+.eyebrow{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px;}
+.eyebrow::before{content:'> ';opacity:.4;}
+h1{font-size:clamp(34px,6vw,54px);font-weight:600;line-height:1.08;letter-spacing:-.025em;margin-bottom:18px;}
+h1 em{font-style:normal;color:var(--accent2);}
+.hero-sub{font-size:16px;color:var(--muted);max-width:560px;margin-bottom:28px;line-height:1.75;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:36px;}
+.tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:4px;border:1px solid var(--border2);color:var(--muted);background:var(--surface);}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:52px;}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s;border:none;font-family:var(--sans);}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:#2563EB;}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border2);}
+.btn-ghost:hover{color:var(--text);background:var(--surface2);}
+
+/* Terminal */
+.terminal{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:20px 24px;font-family:var(--mono);font-size:12.5px;}
+.t-bar{display:flex;gap:7px;margin-bottom:14px;}
+.dot{width:10px;height:10px;border-radius:50%;}
+.dr{background:#FF5F57;}.dy{background:#FFBD2E;}.dg{background:#28C840;}
+.tl{color:var(--muted);line-height:2;}
+.tl .k{color:var(--accent2);}
+.tl .v{color:var(--green);}
+.tl .c{color:var(--faint);}
+.tp{color:var(--accent);margin-right:8px;}
+
+/* Sections */
+.section{padding:80px 24px 0;max-width:960px;margin:auto;}
+.section:last-of-type{padding-bottom:80px;}
+.s-label{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+h2{font-size:24px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px;}
+.divider{width:36px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:36px;}
+
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:40px;}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center;}
+.stat-num{font-size:28px;font-weight:600;color:var(--accent2);font-family:var(--mono);}
+.stat-lbl{font-size:11px;color:var(--muted);margin-top:3px;}
+
+/* Skills */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;}
+.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;transition:border-color .2s;}
+.skill-card:hover{border-color:var(--border2);}
+.skill-name{font-size:13px;font-weight:500;margin-bottom:10px;}
+.chips{display:flex;flex-wrap:wrap;gap:5px;}
+.chip-sm{font-family:var(--mono);font-size:9.5px;padding:2px 7px;border-radius:3px;background:var(--surface2);color:var(--faint);border:1px solid var(--border);}
+
+/* Experience */
+.exp-list{display:flex;flex-direction:column;gap:0;}
+.exp-item{display:grid;grid-template-columns:140px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--border);}
+.exp-item:first-child{padding-top:0;}
+.exp-item:last-child{border-bottom:none;}
+.exp-date{font-family:var(--mono);font-size:11px;color:var(--faint);padding-top:3px;line-height:1.6;}
+.exp-company{font-size:11px;color:var(--accent2);font-family:var(--mono);margin-top:4px;}
+.exp-role{font-size:15px;font-weight:500;margin-bottom:4px;}
+.exp-sector{font-size:11px;color:var(--faint);margin-bottom:10px;}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.exp-bullets li{font-size:13px;color:var(--muted);padding-left:16px;position:relative;line-height:1.6;}
+.exp-bullets li::before{content:'–';position:absolute;left:0;color:var(--accent);font-size:12px;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;}
+.exp-chip{font-family:var(--mono);font-size:9.5px;padding:2px 8px;border-radius:4px;background:rgba(59,130,246,.1);color:var(--accent2);border:1px solid rgba(59,130,246,.18);}
+
+/* Certs */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+.cert-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;}
+.cert-name{font-size:13px;font-weight:500;margin-bottom:4px;}
+.cert-meta{font-size:11px;color:var(--faint);font-family:var(--mono);}
+.cert-badge{display:inline-block;margin-top:8px;font-size:9px;padding:2px 8px;border-radius:99px;background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.25);font-family:var(--mono);}
+
+/* Tool Hub */
+#toolhub{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px 28px;max-width:960px;margin:80px auto 0;}
+.tab-row{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+.tab-btn{font-size:12px;padding:6px 14px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:all .2s;}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* Tracker */
+.tk-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px;}
+.tk-filters{display:flex;gap:7px;flex-wrap:wrap;}
+select.flt{font-size:12px;padding:5px 10px;border-radius:5px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);height:30px;font-family:var(--sans);}
+.add-btn{font-size:12px;padding:5px 14px;border-radius:5px;border:none;background:var(--accent);color:#fff;cursor:pointer;height:30px;font-family:var(--sans);}
+.add-btn:hover{background:#2563EB;}
+.tk-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px;}
+.tks{background:var(--surface2);border-radius:7px;padding:10px;text-align:center;}
+.tks-n{font-size:18px;font-weight:600;font-family:var(--mono);}
+.tks-l{font-size:10px;color:var(--muted);margin-top:2px;}
+.task-list{display:flex;flex-direction:column;gap:7px;}
+.task-row{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;display:grid;grid-template-columns:1fr auto;gap:8px;}
+.task-row:hover{border-color:var(--border2);}
+.tr-title{font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+.tr-meta{font-size:11px;color:var(--faint);display:flex;gap:10px;flex-wrap:wrap;}
+.badge{font-size:10px;padding:2px 8px;border-radius:99px;font-weight:500;}
+.b-todo{background:rgba(148,163,184,.15);color:#94A3B8;}
+.b-doing{background:rgba(59,130,246,.15);color:#60A5FA;}
+.b-done{background:rgba(34,197,94,.15);color:#22C55E;}
+.b-blocked{background:rgba(239,68,68,.15);color:#FCA5A5;}
+.ic-btn{background:none;border:none;color:var(--faint);cursor:pointer;font-size:15px;padding:3px 5px;border-radius:4px;line-height:1;}
+.ic-btn:hover{color:var(--text);background:var(--surface);}
+.empty-msg{text-align:center;padding:36px;color:var(--faint);font-size:13px;}
+
+/* Modal */
+.modal-ov{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:9999;}
+.modal-ov.open{display:flex;}
+.modal-box{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:26px;width:420px;max-width:95vw;}
+.modal-box h3{font-size:15px;font-weight:500;margin-bottom:16px;}
+.field{margin-bottom:11px;}
+.field label{font-size:10px;color:var(--muted);display:block;margin-bottom:4px;letter-spacing:.06em;text-transform:uppercase;}
+.field input,.field select,.field textarea{width:100%;font-size:13px;padding:7px 10px;border-radius:6px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-family:var(--sans);}
+.field textarea{resize:vertical;min-height:58px;}
+.modal-foot{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;}
+.btn-cancel{font-size:13px;padding:7px 14px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-family:var(--sans);}
+.btn-save{font-size:13px;padding:7px 14px;border-radius:6px;border:none;background:var(--accent);color:#fff;cursor:pointer;font-family:var(--sans);}
+
+/* Resources */
+.res-filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
+.res-filter{font-size:12px;padding:5px 14px;border-radius:99px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:all .2s;}
+.res-filter.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.res-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;transition:border-color .2s;}
+.res-card:hover{border-color:var(--accent2);}
+.res-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.res-title{font-size:13px;font-weight:500;line-height:1.4;}
+.res-ext{font-size:18px;flex-shrink:0;}
+.res-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+.res-foot{display:flex;align-items:center;justify-content:space-between;margin-top:4px;}
+.res-cat{font-family:var(--mono);font-size:9.5px;padding:2px 8px;border-radius:3px;background:var(--surface2);color:var(--faint);border:1px solid var(--border);}
+.res-arrow{font-size:11px;color:var(--faint);}
+.res-card:hover .res-arrow{color:var(--accent2);}
+
+/* Password gate */
+.pw-gate{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:32px;text-align:center;max-width:360px;margin:0 auto;}
+.pw-gate h3{font-size:15px;font-weight:500;margin-bottom:8px;}
+.pw-gate p{font-size:12px;color:var(--muted);margin-bottom:20px;}
+.pw-row{display:flex;gap:8px;}
+.pw-row input{flex:1;font-size:13px;padding:8px 12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-family:var(--sans);}
+.pw-row button{font-size:13px;padding:8px 16px;border-radius:6px;border:none;background:var(--accent);color:#fff;cursor:pointer;font-family:var(--sans);}
+.pw-err{font-size:11px;color:#FCA5A5;margin-top:8px;display:none;}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.contact-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;transition:border-color .2s;}
+.contact-card:hover{border-color:var(--accent);}
+.c-icon{font-size:20px;}
+.c-label{font-size:11px;color:var(--muted);margin-bottom:2px;}
+.c-val{font-size:13px;font-weight:500;}
+
+footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--faint);}
+
+@media(max-width:640px){
+  .exp-item{grid-template-columns:1fr;}
+  .exp-date{display:flex;gap:12px;}
+  .contact-grid{grid-template-columns:1fr;}
+  .tk-stats{grid-template-columns:repeat(3,1fr);}
+  #toolhub{padding:24px 16px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">ndhh.itm</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#" onclick="toggleToolHub(event)" style="color:var(--faint);font-size:11px">🔒</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div id="about">
+<section id="hero" style="padding:148px 0 80px;max-width:960px;margin:auto;padding-left:24px;padding-right:24px;">
+  <div class="eyebrow">IT Manager · Ho Chi Minh City</div>
+  <h1>Nguyen Do<br><em>Huy Hoang</em></h1>
+  <p class="hero-sub">IT Manager with 6+ years building enterprise infrastructure across media, EdTech, and commercial real estate. From network design to ERP deployment — bridging technical depth with IT governance.</p>
+  <div class="hero-tags">
+    <span class="tag">Infrastructure & Operations</span>
+    <span class="tag">IT Governance</span>
+    <span class="tag">Multi-site Management</span>
+    <span class="tag">Network Design</span>
+    <span class="tag">ERP / Lark</span>
+    <span class="tag">Security & Compliance</span>
+    <span class="tag">ITIL v5</span>
+    <span class="tag">Certified ScrumMaster</span>
+  </div>
+  <div class="cta-row">
+    <a href="#experience" class="btn btn-primary">View experience →</a>
+    <a href="mailto:ndhh.296@gmail.com" class="btn btn-ghost">Get in touch</a>
+  </div>
+
+  <div class="terminal">
+    <div class="t-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div>
+    <div class="tl"><span class="tp">$</span><span class="k">cat</span> profile.json</div>
+    <div class="tl" style="margin-left:16px"><span class="c">{</span></div>
+    <div class="tl" style="margin-left:32px"><span class="k">"name"</span>: <span class="v">"Nguyen Do Huy Hoang"</span>,</div>
+    <div class="tl" style="margin-left:32px"><span class="k">"role"</span>: <span class="v">"IT Manager @ The Sentry"</span>,</div>
+    <div class="tl" style="margin-left:32px"><span class="k">"buildings"</span>: <span class="v">6</span>, <span class="c">// Sonatus · TSC · TSP · TSZ · Orbital 1 · Orbital 2</span></div>
+    <div class="tl" style="margin-left:32px"><span class="k">"experience"</span>: <span class="v">"6+ years"</span>,</div>
+    <div class="tl" style="margin-left:32px"><span class="k">"certs"</span>: <span class="v">["ITIL Foundation v5", "Certified ScrumMaster"]</span>,</div>
+    <div class="tl" style="margin-left:32px"><span class="k">"goal"</span>: <span class="v">"Director / CIO"</span></div>
+    <div class="tl" style="margin-left:16px"><span class="c">}</span></div>
+  </div>
+</section>
+</div>
+
+<!-- Stats -->
+<div class="section">
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num">6+</div><div class="stat-lbl">Years experience</div></div>
+    <div class="stat-box"><div class="stat-num">6</div><div class="stat-lbl">Buildings managed</div></div>
+    <div class="stat-box"><div class="stat-num">1000+</div><div class="stat-lbl">Users supported</div></div>
+    <div class="stat-box"><div class="stat-num">99%+</div><div class="stat-lbl">Uptime maintained</div></div>
+    <div class="stat-box"><div class="stat-num">2</div><div class="stat-lbl">Certifications</div></div>
+  </div>
+</div>
+
+<!-- Experience -->
+<div class="section" id="experience">
+  <div class="s-label">Career</div>
+  <h2>Work experience</h2>
+  <div class="divider"></div>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Apr 2025 – Present</div>
+        <div class="exp-company">The Sentry</div>
+      </div>
+      <div>
+        <div class="exp-role">IT Manager</div>
+        <div class="exp-sector">Co-working Space & Building Operations</div>
+        <ul class="exp-bullets">
+          <li>Designed and deployed end-to-end network infrastructure across 6 commercial buildings — Fortigate NGFW, core switches, VLAN segmentation, Peplink SD-WAN, Ruckus APs, CCTV, biometric access control, smart car parking, and AV systems.</li>
+          <li>Built an IT Asset Management system using Microsoft Power Apps, replacing manual tracking with a structured digital lifecycle workflow.</li>
+          <li>Deployed Zabbix for real-time monitoring, maintaining 99%+ uptime and enabling proactive incident detection across all sites.</li>
+          <li>Conducted IT security risk assessments and developed a multi-phase infrastructure upgrade roadmap.</li>
+          <li>Established standardized IT SOPs, acceptable use policies, and managed SLAs with ISPs and hardware vendors.</li>
+          <li>Produced structured weekly and monthly IT reports for senior management.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-chip">Fortigate</span><span class="exp-chip">Peplink SD-WAN</span><span class="exp-chip">Ruckus</span><span class="exp-chip">VLAN</span><span class="exp-chip">Zabbix</span><span class="exp-chip">Power Apps</span><span class="exp-chip">ITAM</span><span class="exp-chip">SOP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">May 2022 – Apr 2025</div>
+        <div class="exp-company">Metub Network</div>
+      </div>
+      <div>
+        <div class="exp-role">Senior IT Engineer / IT Team Lead</div>
+        <div class="exp-sector">Digital Media & Entertainment</div>
+        <ul class="exp-bullets">
+          <li>Led IT operations for ~1,000 staff across 6 branch offices including dedicated livestream studio environments.</li>
+          <li>Planned and deployed network infrastructure for all branches — Mikrotik, DrayTek, Aruba APs, NAS storage for high-bandwidth video production workflows.</li>
+          <li>Led company-wide Lark ERP deployment — designed digital workflows covering HR, procurement, and finance operations.</li>
+          <li>Managed full IT procurement lifecycle across all locations: needs assessment, vendor negotiation, deployment, and disposal.</li>
+          <li>Recruited and managed the IT support team; built ticketing workflows and escalation procedures for 1,000+ users.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-chip">Mikrotik</span><span class="exp-chip">DrayTek</span><span class="exp-chip">Aruba</span><span class="exp-chip">Lark ERP</span><span class="exp-chip">Zabbix</span><span class="exp-chip">Team Lead</span><span class="exp-chip">Procurement</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Aug 2019 – Apr 2022</div>
+        <div class="exp-company">Gaia International</div>
+      </div>
+      <div>
+        <div class="exp-role">IT Support & QA Engineer</div>
+        <div class="exp-sector">EdTech</div>
+        <ul class="exp-bullets">
+          <li>Provided technical support for company servers and business applications across an education software company serving schools nationwide.</li>
+          <li>Managed hardware and software asset lifecycle including procurement coordination and vendor liaison.</li>
+          <li>Performed software QA testing to validate product reliability prior to client rollouts.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-chip">IT Support</span><span class="exp-chip">Asset Mgmt</span><span class="exp-chip">QA Testing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Oct 2018 – Aug 2019</div>
+        <div class="exp-company">LogiGear Vietnam</div>
+      </div>
+      <div>
+        <div class="exp-role">Tester / Developer</div>
+        <div class="exp-sector">Software QA & Development</div>
+        <ul class="exp-bullets">
+          <li>Executed structured software test plans and contributed to ERP system deployments and e-commerce platform development.</li>
+        </ul>
+        <div class="exp-tags"><span class="exp-chip">QA</span><span class="exp-chip">ERP</span><span class="exp-chip">E-commerce</span></div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Jun – Sep 2018</div>
+        <div class="exp-company">University of Ulsan</div>
+      </div>
+      <div>
+        <div class="exp-role">Student Intern — Blockchain R&D</div>
+        <div class="exp-sector">South Korea</div>
+        <ul class="exp-bullets">
+          <li>Developed Bitcoin transaction simulations on a Blockchain platform and built an AI game (Wumpus World) as part of academic research.</li>
+          <li>Founded and administered the VSAU (Vietnamese Students Association at Ulsan University) community organisation.</li>
+        </ul>
+        <div class="exp-tags"><span class="exp-chip">Blockchain</span><span class="exp-chip">AI</span><span class="exp-chip">Research</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Skills -->
+<div class="section" id="skills">
+  <div class="s-label">Capabilities</div>
+  <h2>Technical skills</h2>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-name">🌐 Network</div>
+      <div class="chips"><span class="chip-sm">Mikrotik</span><span class="chip-sm">DrayTek</span><span class="chip-sm">Fortigate</span><span class="chip-sm">Cisco</span><span class="chip-sm">Aruba</span><span class="chip-sm">Ruckus</span><span class="chip-sm">Peplink SD-WAN</span><span class="chip-sm">VLAN</span><span class="chip-sm">VPN</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-name">🔐 Security Systems</div>
+      <div class="chips"><span class="chip-sm">CCTV / IP Camera</span><span class="chip-sm">Access Control</span><span class="chip-sm">Smart Parking</span><span class="chip-sm">AV Systems</span><span class="chip-sm">BEC Response</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-name">📡 Monitoring</div>
+      <div class="chips"><span class="chip-sm">Zabbix</span><span class="chip-sm">PRTG</span><span class="chip-sm">Real-time alerting</span><span class="chip-sm">Uptime tracking</span><span class="chip-sm">Incident response</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-name">📋 IT Governance</div>
+      <div class="chips"><span class="chip-sm">ITIL Foundation v5</span><span class="chip-sm">SOP & Policy</span><span class="chip-sm">ITAM</span><span class="chip-sm">BCP / DRP</span><span class="chip-sm">SLA Management</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-name">⚙️ Apps & Dev</div>
+      <div class="chips"><span class="chip-sm">Power Apps</span><span class="chip-sm">Lark ERP</span><span class="chip-sm">Microsoft 365</span><span class="chip-sm">Google Workspace</span><span class="chip-sm">Basic scripting</span><span class="chip-sm">QA Testing</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-name">🛡️ Cybersecurity</div>
+      <div class="chips"><span class="chip-sm">Web Pen Testing</span><span class="chip-sm">Risk Assessment</span><span class="chip-sm">Security Policy</span><span class="chip-sm">Compliance Audit</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Certs & Education -->
+<div class="section">
+  <div class="s-label">Credentials</div>
+  <h2>Education & certifications</h2>
+  <div class="divider"></div>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-name">Bachelor of Computer Science</div>
+      <div class="cert-meta">Ton Duc Thang University · 2015 – 2019</div>
+      <span class="cert-badge">DEGREE</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-name">ITIL Foundation (Version 5)</div>
+      <div class="cert-meta">Certified · 2026</div>
+      <span class="cert-badge">CERTIFIED</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-name">Certified ScrumMaster (CSM)</div>
+      <div class="cert-meta">Certified · 2026</div>
+      <span class="cert-badge">CERTIFIED</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-name">Research — Blockchain R&D</div>
+      <div class="cert-meta">University of Ulsan · South Korea · 2018</div>
+      <span class="cert-badge">RESEARCH</span>
+    </div>
+  </div>
+</div>
+
+<!-- Resources -->
+<div class="section" id="resources">
+  <div class="s-label">Knowledge sharing</div>
+  <h2>Resources</h2>
+  <div class="divider"></div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:24px;margin-top:-20px;">Tài liệu học tập, phần mềm và công cụ hữu ích — tổng hợp và chia sẻ miễn phí.</p>
+
+  <div class="res-filter-row">
+    <button class="res-filter active" onclick="filterRes('all',this)">All</button>
+    <button class="res-filter" onclick="filterRes('network',this)">🌐 Network</button>
+    <button class="res-filter" onclick="filterRes('security',this)">🔐 Security</button>
+    <button class="res-filter" onclick="filterRes('sysadmin',this)">🖥️ SysAdmin</button>
+    <button class="res-filter" onclick="filterRes('cert',this)">📜 Certifications</button>
+    <button class="res-filter" onclick="filterRes('tools',this)">🛠️ Tools & Software</button>
+  </div>
+  <div class="res-grid" id="resGrid"></div>
+</div>
+
+<!-- Tool Hub (hidden, password protected) -->
+<div id="toolhub-wrap" style="display:none;max-width:960px;margin:0 auto;padding:80px 24px 0;">
+<div id="toolhub" style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px 28px;">
+  <div class="s-label" style="margin-bottom:4px">Internal · The Sentry</div>
+  <h2 style="margin-bottom:8px">IT Tool Hub</h2>
+  <div class="divider"></div>
+
+  <!-- Password gate -->
+  <div id="pwGate">
+    <div class="pw-gate">
+      <h3>🔒 Internal access only</h3>
+      <p>Khu vực dành riêng cho team The Sentry</p>
+      <div class="pw-row">
+        <input type="password" id="pwInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()">
+        <button onclick="checkPw()">Unlock</button>
+      </div>
+      <div class="pw-err" id="pwErr">Incorrect password</div>
+    </div>
+  </div>
+
+  <!-- Tool content (hidden until unlocked) -->
+  <div id="toolContent" style="display:none;">
+    <div class="tab-row">
+      <button class="tab-btn active" onclick="switchTab('tracker',this)">📋 Task Tracker</button>
+      <button class="tab-btn" onclick="switchTab('resman',this)">🔗 Resources Manager</button>
+    </div>
+
+    <!-- Resources Manager Tab -->
+    <div class="tab-panel" id="tab-resman">
+      <div class="tk-head" style="margin-bottom:16px;">
+        <div style="font-size:12px;color:var(--muted)">Quản lý link Resources hiển thị công khai</div>
+        <button class="add-btn" onclick="openResModal()">+ Thêm link</button>
+      </div>
+      <div id="resManList"></div>
+    </div>
+
+    <div class="tab-panel active" id="tab-tracker">
+      <div class="tk-head">
+        <div style="font-size:12px;color:var(--muted)">IT tasks — The Sentry</div>
+        <div class="tk-filters">
+          <select class="flt" id="tkB" onchange="renderTasks()">
+            <option value="">All buildings</option>
+            <option>Sonatus</option><option>TSC</option><option>TSP</option><option>TSZ</option><option>Orbital 1</option><option>Orbital 2</option>
+          </select>
+          <select class="flt" id="tkS" onchange="renderTasks()">
+            <option value="">All status</option>
+            <option value="todo">To-do</option><option value="doing">In progress</option><option value="done">Done</option><option value="blocked">Blocked</option>
+          </select>
+          <button class="add-btn" onclick="openModal()">+ Add task</button>
+        </div>
+      </div>
+      <div class="tk-stats" id="tkStats"></div>
+      <div class="task-list" id="taskList"></div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- Contact -->
+<div class="section" id="contact">
+  <div class="s-label">Connect</div>
+  <h2>Get in touch</h2>
+  <div class="divider"></div>
+  <div class="contact-grid">
+    <a class="contact-card" href="mailto:ndhh.296@gmail.com">
+      <span class="c-icon">✉️</span>
+      <div><div class="c-label">Email</div><div class="c-val">ndhh.296@gmail.com</div></div>
+    </a>
+    <a class="contact-card" href="tel:+84387114113">
+      <span class="c-icon">📞</span>
+      <div><div class="c-label">Phone</div><div class="c-val">+84 387 114 113</div></div>
+    </a>
+    <div class="contact-card">
+      <span class="c-icon">📍</span>
+      <div><div class="c-label">Location</div><div class="c-val">Thao Dien, Ho Chi Minh City</div></div>
+    </div>
+    <div class="contact-card">
+      <span class="c-icon">🌐</span>
+      <div><div class="c-label">Language</div><div class="c-val">Vietnamese · English (Professional reading)</div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Nguyen Do Huy Hoang · IT Manager · Ho Chi Minh City · <span id="yr"></span>
+</footer>
+
+<!-- Resources Modal -->
+<div class="modal-ov" id="resModal">
+  <div class="modal-box">
+    <h3 id="resModalTitle">Thêm link mới</h3>
+    <div class="field"><label>Tiêu đề</label><input id="rTitle" placeholder="VD: ITIL 4 Study Guide PDF..."></div>
+    <div class="field"><label>URL (Google Drive hoặc link trực tiếp)</label><input id="rUrl" placeholder="https://drive.google.com/..."></div>
+    <div class="field"><label>Mô tả ngắn</label><textarea id="rDesc" placeholder="Mô tả nội dung tài liệu..."></textarea></div>
+    <div class="field"><label>Danh mục</label>
+      <select id="rCat">
+        <option value="network">🌐 Network</option>
+        <option value="security">🔐 Security</option>
+        <option value="sysadmin">🖥️ SysAdmin</option>
+        <option value="cert">📜 Certifications</option>
+        <option value="tools">🛠️ Tools & Software</option>
+      </select>
+    </div>
+    <div class="field"><label>Loại</label>
+      <select id="rType">
+        <option value="📄">📄 PDF / Tài liệu</option>
+        <option value="💾">💾 Phần mềm / Download</option>
+        <option value="🎥">🎥 Video / Khoá học</option>
+        <option value="🌐">🌐 Website</option>
+        <option value="🛠️">🛠️ Tool</option>
+      </select>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeResModal()">Hủy</button>
+      <button class="btn-save" onclick="saveResItem()">Lưu & hiển thị</button>
+    </div>
+  </div>
+</div>
+<!-- Task Modal -->
+<div class="modal-ov" id="modal">
+  <div class="modal-box">
+    <h3 id="modalTitle">Add task</h3>
+    <div class="field"><label>Task name</label><input id="mTitle" placeholder="e.g. VLAN reconfiguration..."></div>
+    <div class="field"><label>Building</label>
+      <select id="mBuilding"><option>Sonatus</option><option>TSC</option><option>TSP</option><option>TSZ</option><option>Orbital 1</option><option>Orbital 2</option><option>All</option></select>
+    </div>
+    <div class="field"><label>Status</label>
+      <select id="mStatus"><option value="todo">To-do</option><option value="doing">In progress</option><option value="done">Done</option><option value="blocked">Blocked</option></select>
+    </div>
+    <div class="field"><label>Deadline</label><input type="date" id="mDate"></div>
+    <div class="field"><label>Owner</label><input id="mOwner" placeholder="e.g. Victor..."></div>
+    <div class="field"><label>Notes</label><textarea id="mNote" placeholder="Additional details..."></textarea></div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveTask()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const API = 'https://script.google.com/macros/s/AKfycbxhfPfuP_9sAPsta7eaKRniMMIHtkfwzzwOeEjOL89IDB8jwWG0qah7LCaGsbzaiQ02/exec';
+
+// ── API helpers ───────────────────────────────────────────
+async function apiGet(tab) {
+  const res = await fetch(`${API}?tab=${tab}`);
+  const json = await res.json();
+  return json.data || [];
+}
+async function apiPost(payload) {
+  await fetch(API, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  });
+}
+
+// ── Tab switcher ──────────────────────────────────────────
+function switchTab(name, el) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  el.classList.add('active');
+}
+
+// ── Tool Hub toggle + password từ Google Sheet ────────────
+let toolUnlocked = false;
+
+function toggleToolHub(e) {
+  e.preventDefault();
+  const wrap = document.getElementById('toolhub-wrap');
+  if (wrap.style.display === 'none') {
+    wrap.style.display = 'block';
+    wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    wrap.style.display = 'none';
+  }
+}
+
+async function checkPw() {
+  const val = document.getElementById('pwInput').value.trim();
+  if (!val) return;
+  const btn = document.querySelector('#pwGate button');
+  btn.textContent = '...'; btn.disabled = true;
+  try {
+    const config = await apiGet('config');
+    const pwRow = config.find(r => r.key === 'password');
+    const correctPw = pwRow ? String(pwRow.value) : 'sentry2026';
+    if (val === correctPw) {
+      document.getElementById('pwGate').style.display = 'none';
+      document.getElementById('toolContent').style.display = 'block';
+      toolUnlocked = true;
+      loadAndRenderTasks();
+      loadAndRenderResManager();
+    } else {
+      document.getElementById('pwErr').style.display = 'block';
+      document.getElementById('pwInput').value = '';
+    }
+  } catch(e) {
+    alert('Không kết nối được Google Sheet. Kiểm tra lại API.');
+  }
+  btn.textContent = 'Unlock'; btn.disabled = false;
+}
+
+// ── Resources (public — load từ Sheet khi trang mở) ───────
+let resources = [];
+let activeFilter = 'all';
+const catLabel = { network:'Network', security:'Security', sysadmin:'SysAdmin', cert:'Certification', tools:'Tools & Software' };
+const catMeta = { all:'All', network:'🌐 Network', security:'🔐 Security', sysadmin:'🖥️ SysAdmin', cert:'📜 Certifications', tools:'🛠️ Tools & Software' };
+
+async function loadResources() {
+  try {
+    resources = await apiGet('resources');
+    renderRes();
+    syncFilterButtons();
+  } catch(e) {
+    document.getElementById('resGrid').innerHTML = '<div style="color:var(--faint);font-size:13px;padding:20px 0">Không tải được resources.</div>';
+  }
+}
+
+function filterRes(cat, el) {
+  activeFilter = cat;
+  document.querySelectorAll('.res-filter').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderRes();
+}
+
+function renderRes() {
+  const filtered = activeFilter === 'all' ? resources : resources.filter(r => r.cat === activeFilter);
+  if (!filtered.length) {
+    document.getElementById('resGrid').innerHTML = '<div style="color:var(--faint);font-size:13px;padding:20px 0">Chưa có tài liệu nào trong danh mục này.</div>';
+    return;
+  }
+  document.getElementById('resGrid').innerHTML = filtered.map(r => `
+    <a class="res-card" href="${r.url}" target="_blank" rel="noopener">
+      <div class="res-card-top"><div class="res-title">${r.title}</div><div class="res-ext">${r.icon||'📄'}</div></div>
+      <div class="res-desc">${r.desc||''}</div>
+      <div class="res-foot"><span class="res-cat">${catLabel[r.cat]||r.cat}</span><span class="res-arrow">↗</span></div>
+    </a>`).join('');
+}
+
+function syncFilterButtons() {
+  const cats = ['all', ...new Set(resources.map(r => r.cat).filter(Boolean))];
+  const row = document.querySelector('.res-filter-row');
+  if (!row) return;
+  row.innerHTML = cats.map(c =>
+    `<button class="res-filter${c===activeFilter?' active':''}" onclick="filterRes('${c}',this)">${catMeta[c]||c}</button>`
+  ).join('');
+}
+
+// ── Resources Manager (trong panel ổ khóa) ───────────────
+let editResId = null;
+
+async function loadAndRenderResManager() {
+  if (!toolUnlocked) return;
+  const el = document.getElementById('resManList');
+  el.innerHTML = '<div class="empty-msg" style="color:var(--faint)">Đang tải...</div>';
+  resources = await apiGet('resources');
+  renderRes(); syncFilterButtons();
+  renderResManager();
+}
+
+function renderResManager() {
+  const el = document.getElementById('resManList');
+  if (!el) return;
+  if (!resources.length) { el.innerHTML = '<div class="empty-msg">Chưa có link nào.</div>'; return; }
+  el.innerHTML = resources.map((r,i) => `
+    <div class="task-row" style="margin-bottom:8px;">
+      <div style="min-width:0;">
+        <div class="tr-title" style="font-size:13px;">${r.icon||'📄'} ${r.title}</div>
+        <div class="tr-meta">
+          <span>${catLabel[r.cat]||r.cat}</span>
+          <span style="color:var(--accent2);font-size:10px;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${r.url}</span>
+        </div>
+        ${r.desc?`<div style="font-size:11px;color:var(--faint);margin-top:3px;">${r.desc}</div>`:''}
+      </div>
+      <div style="display:flex;gap:4px;flex-shrink:0;">
+        <button class="ic-btn" onclick="editRes(${i})">✏️</button>
+        <button class="ic-btn" onclick="deleteRes(${i})">🗑️</button>
+      </div>
+    </div>`).join('');
+}
+
+function openResModal(idx=null) {
+  editResId = idx;
+  const r = idx !== null ? resources[idx] : null;
+  document.getElementById('resModalTitle').textContent = idx !== null ? 'Sửa link' : 'Thêm link mới';
+  document.getElementById('rTitle').value = r?.title || '';
+  document.getElementById('rUrl').value = r?.url || '';
+  document.getElementById('rDesc').value = r?.desc || '';
+  document.getElementById('rCat').value = r?.cat || 'network';
+  document.getElementById('rType').value = r?.icon || '📄';
+  document.getElementById('resModal').classList.add('open');
+}
+function closeResModal() { document.getElementById('resModal').classList.remove('open'); editResId = null; }
+
+async function saveResItem() {
+  const title = document.getElementById('rTitle').value.trim();
+  const url = document.getElementById('rUrl').value.trim();
+  if (!title || !url) { alert('Vui lòng nhập tiêu đề và URL'); return; }
+  const item = { title, url, desc: document.getElementById('rDesc').value.trim(), cat: document.getElementById('rCat').value, icon: document.getElementById('rType').value };
+  const btn = document.querySelector('#resModal .btn-save');
+  btn.textContent = 'Đang lưu...'; btn.disabled = true;
+  if (editResId !== null) resources[editResId] = item;
+  else resources.push(item);
+  await apiPost({ tab: 'resources', action: 'set_all', row: resources });
+  closeResModal();
+  renderRes(); renderResManager(); syncFilterButtons();
+  btn.textContent = 'Lưu & hiển thị'; btn.disabled = false;
+}
+
+function editRes(idx) { openResModal(idx); }
+async function deleteRes(idx) {
+  if (!confirm('Xóa link này?')) return;
+  resources.splice(idx, 1);
+  await apiPost({ tab: 'resources', action: 'set_all', row: resources });
+  renderRes(); renderResManager(); syncFilterButtons();
+}
+
+document.getElementById('resModal').addEventListener('click', function(e) { if (e.target===this) closeResModal(); });
+
+// ── Task Tracker ──────────────────────────────────────────
+const SL = { todo:'To-do', doing:'In progress', done:'Done', blocked:'Blocked' };
+const SC = { todo:'b-todo', doing:'b-doing', done:'b-done', blocked:'b-blocked' };
+let tasks = [];
+let editId = null, nid = 1;
+
+async function loadAndRenderTasks() {
+  if (!toolUnlocked) return;
+  document.getElementById('taskList').innerHTML = '<div class="empty-msg" style="color:var(--faint)">Đang tải...</div>';
+  tasks = await apiGet('tasks');
+  nid = tasks.length ? Math.max(...tasks.map(t => parseInt(t.id)||0)) + 1 : 1;
+  renderTasks();
+}
+
+function renderTasks() {
+  if (!toolUnlocked) return;
+  const b = document.getElementById('tkB').value;
+  const s = document.getElementById('tkS').value;
+  const f = tasks.filter(t => (!b || t.building===b) && (!s || t.status===s));
+  const c = {todo:0,doing:0,done:0,blocked:0};
+  tasks.forEach(t => { if(c[t.status]!==undefined) c[t.status]++; });
+  document.getElementById('tkStats').innerHTML = `
+    <div class="tks"><div class="tks-n" style="color:var(--text)">${tasks.length}</div><div class="tks-l">Total</div></div>
+    <div class="tks"><div class="tks-n" style="color:#94A3B8">${c.todo}</div><div class="tks-l">To-do</div></div>
+    <div class="tks"><div class="tks-n" style="color:#60A5FA">${c.doing}</div><div class="tks-l">In progress</div></div>
+    <div class="tks"><div class="tks-n" style="color:#22C55E">${c.done}</div><div class="tks-l">Done</div></div>
+    <div class="tks"><div class="tks-n" style="color:#FCA5A5">${c.blocked}</div><div class="tks-l">Blocked</div></div>`;
+  if (!f.length) { document.getElementById('taskList').innerHTML='<div class="empty-msg">No tasks found</div>'; return; }
+  const od = t => t.date && t.status!=='done' && new Date(t.date)<new Date();
+  document.getElementById('taskList').innerHTML = f.map(t=>`
+    <div class="task-row">
+      <div>
+        <div class="tr-title">${t.title}<span class="badge ${SC[t.status]||'b-todo'}">${SL[t.status]||t.status}</span></div>
+        <div class="tr-meta">
+          <span>🏢 ${t.building}</span>
+          ${t.date?`<span style="${od(t)?'color:#FCA5A5':''}">📅 ${t.date}</span>`:''}
+          ${t.owner?`<span>👤 ${t.owner}</span>`:''}
+          ${t.note?`<span>📝 ${t.note}</span>`:''}
+        </div>
+      </div>
+      <div style="display:flex;gap:4px">
+        <button class="ic-btn" onclick="editTask('${t.id}')">✏️</button>
+        <button class="ic-btn" onclick="deleteTask('${t.id}')">🗑️</button>
+      </div>
+    </div>`).join('');
+}
+
+function openModal(id=null) {
+  editId = id;
+  const t = id ? tasks.find(x => String(x.id)===String(id)) : null;
+  document.getElementById('modalTitle').textContent = id ? 'Edit task' : 'Add task';
+  document.getElementById('mTitle').value = t?.title||'';
+  document.getElementById('mBuilding').value = t?.building||'Sonatus';
+  document.getElementById('mStatus').value = t?.status||'todo';
+  document.getElementById('mDate').value = t?.date||'';
+  document.getElementById('mOwner').value = t?.owner||'';
+  document.getElementById('mNote').value = t?.note||'';
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); editId = null; }
+
+async function saveTask() {
+  const title = document.getElementById('mTitle').value.trim();
+  if (!title) { alert('Please enter a task name'); return; }
+  const d = { id: editId || String(nid++), title, building: document.getElementById('mBuilding').value, status: document.getElementById('mStatus').value, date: document.getElementById('mDate').value, owner: document.getElementById('mOwner').value.trim(), note: document.getElementById('mNote').value.trim() };
+  const btn = document.querySelector('#modal .btn-save');
+  btn.textContent = 'Saving...'; btn.disabled = true;
+  if (editId) {
+    const idx = tasks.findIndex(t => String(t.id)===String(editId));
+    if (idx > -1) tasks[idx] = d;
+    await apiPost({ tab: 'tasks', action: 'update', id: editId, row: d });
+  } else {
+    tasks.push(d);
+    await apiPost({ tab: 'tasks', action: 'add', row: d });
+  }
+  closeModal(); renderTasks();
+  btn.textContent = 'Save'; btn.disabled = false;
+}
+
+function editTask(id) { openModal(id); }
+async function deleteTask(id) {
+  if (!confirm('Delete this task?')) return;
+  tasks = tasks.filter(t => String(t.id)!==String(id));
+  await apiPost({ tab: 'tasks', action: 'delete', id });
+  renderTasks();
+}
+
+document.getElementById('modal').addEventListener('click', function(e) { if (e.target===this) closeModal(); });
+
+// ── Init ──────────────────────────────────────────────────
+loadResources();
+</script>
+</body>
+</html>
