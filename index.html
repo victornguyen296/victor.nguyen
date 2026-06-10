@@ -70,15 +70,15 @@ h2{font-size:24px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px;}
 
 /* Skills */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;}
-.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;transition:border-color .2s;}
+.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;transition:border-color .2s;overflow:hidden;min-width:0;}
 .skill-card:hover{border-color:var(--border2);}
-.skill-name{font-size:13px;font-weight:500;margin-bottom:10px;}
+.skill-name{font-size:13px;font-weight:500;margin-bottom:10px;overflow:hidden;}
 .chips{display:flex;flex-wrap:wrap;gap:5px;}
 .chip-sm{font-family:var(--mono);font-size:9.5px;padding:2px 7px;border-radius:3px;background:var(--surface2);color:var(--faint);border:1px solid var(--border);}
 
 /* Experience */
 .exp-list{display:flex;flex-direction:column;gap:0;}
-.exp-item{display:grid;grid-template-columns:140px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--border);}
+.exp-item{display:grid;grid-template-columns:140px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--border);min-width:0;}
 .exp-item:first-child{padding-top:0;}
 .exp-item:last-child{border-bottom:none;}
 .exp-date{font-family:var(--mono);font-size:11px;color:var(--faint);padding-top:3px;line-height:1.6;}
@@ -86,10 +86,10 @@ h2{font-size:24px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px;}
 .exp-role{font-size:15px;font-weight:500;margin-bottom:4px;}
 .exp-sector{font-size:11px;color:var(--faint);margin-bottom:10px;}
 .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:6px;}
-.exp-bullets li{font-size:13px;color:var(--muted);padding-left:16px;position:relative;line-height:1.6;}
+.exp-bullets li{font-size:13px;color:var(--muted);padding-left:16px;position:relative;line-height:1.6;word-break:break-word;}
 .exp-bullets li::before{content:'–';position:absolute;left:0;color:var(--accent);font-size:12px;}
 .exp-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;}
-.exp-chip{font-family:var(--mono);font-size:9.5px;padding:2px 8px;border-radius:4px;background:rgba(59,130,246,.1);color:var(--accent2);border:1px solid rgba(59,130,246,.18);}
+.exp-chip{font-family:var(--mono);font-size:9.5px;padding:2px 8px;border-radius:4px;background:rgba(59,130,246,.1);color:var(--accent2);border:1px solid rgba(59,130,246,.18);white-space:nowrap;}
 
 /* Certs */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
@@ -148,11 +148,11 @@ select.flt{font-size:12px;padding:5px 10px;border-radius:5px;border:1px solid va
 .res-filter{font-size:12px;padding:5px 14px;border-radius:99px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:all .2s;}
 .res-filter.active{background:var(--accent);color:#fff;border-color:var(--accent);}
 .res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
-.res-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;transition:border-color .2s;}
+.res-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;transition:border-color .2s;overflow:hidden;min-width:0;}
 .res-card:hover{border-color:var(--accent2);}
-.res-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
-.res-title{font-size:13px;font-weight:500;line-height:1.4;}
-.res-ext{font-size:18px;flex-shrink:0;}
+.res-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;min-width:0;}
+.res-title{font-size:13px;font-weight:500;line-height:1.4;min-width:0;overflow:hidden;}
+.res-ext{font-size:18px;flex-shrink:0;width:24px;text-align:center;}
 .res-desc{font-size:12px;color:var(--muted);line-height:1.5;}
 .res-foot{display:flex;align-items:center;justify-content:space-between;margin-top:4px;}
 .res-cat{font-family:var(--mono);font-size:9.5px;padding:2px 8px;border-radius:3px;background:var(--surface2);color:var(--faint);border:1px solid var(--border);}
@@ -266,15 +266,34 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-fa
         <div class="exp-role">IT Manager</div>
         <div class="exp-sector">Co-working Space & Building Operations</div>
         <ul class="exp-bullets">
-          <li>Designed and deployed end-to-end network infrastructure across 6 commercial buildings — Fortigate NGFW, core switches, VLAN segmentation, Peplink SD-WAN, Ruckus APs, CCTV, biometric access control, smart car parking, and AV systems.</li>
-          <li>Built an IT Asset Management system using Microsoft Power Apps, replacing manual tracking with a structured digital lifecycle workflow.</li>
-          <li>Deployed Zabbix for real-time monitoring, maintaining 99%+ uptime and enabling proactive incident detection across all sites.</li>
-          <li>Conducted IT security risk assessments and developed a multi-phase infrastructure upgrade roadmap.</li>
-          <li>Established standardized IT SOPs, acceptable use policies, and managed SLAs with ISPs and hardware vendors.</li>
-          <li>Produced structured weekly and monthly IT reports for senior management.</li>
+          <li>Responsible for IT infrastructure and operations across 6 commercial buildings (Sonatus, TSC, TSP, TSZ, Orbital 1, Orbital 2).</li>
+          <li>Network deployment — Designed and configured end-to-end infrastructure: Fortigate next-gen firewalls, core switches, VLAN segmentation, Peplink SD-WAN, Ruckus APs, CCTV/IP cameras, biometric access control, smart car parking, and AV systems.</li>
+          <li>Built an IT Asset Management system using Microsoft Power Apps, replacing manual tracking with a structured digital lifecycle workflow covering procurement, assignment, and disposal.</li>
+          <li>Deployed Zabbix for real-time system monitoring, maintaining 99%+ uptime and enabling proactive incident detection across all infrastructure.</li>
+          <li>Conducted comprehensive IT security risk assessments and developed a multi-phase infrastructure upgrade roadmap aligned with the company's growth plan.</li>
+          <li>Established standardized IT SOPs and acceptable use policies; managed SLAs and technical relationships with ISPs and hardware vendors.</li>
+          <li>Produced structured weekly and monthly IT reports for senior management covering system performance, incident summaries, and project progress.</li>
         </ul>
         <div class="exp-tags">
           <span class="exp-chip">Fortigate</span><span class="exp-chip">Peplink SD-WAN</span><span class="exp-chip">Ruckus</span><span class="exp-chip">VLAN</span><span class="exp-chip">Zabbix</span><span class="exp-chip">Power Apps</span><span class="exp-chip">ITAM</span><span class="exp-chip">SOP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">2025 – Present</div>
+        <div class="exp-company">Global Nexus IT</div>
+      </div>
+      <div>
+        <div class="exp-role">IT Consultant (Outsource)</div>
+        <div class="exp-sector">IT Consulting & Managed Services</div>
+        <ul class="exp-bullets">
+          <li>Providing outsourced IT consulting services covering infrastructure assessment, network design, and IT governance advisory.</li>
+          <li>Supporting clients with SOP development, vendor evaluation, and technology roadmap planning.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-chip">IT Consulting</span><span class="exp-chip">Infrastructure</span><span class="exp-chip">IT Governance</span><span class="exp-chip">Outsource</span>
         </div>
       </div>
     </div>
@@ -288,14 +307,17 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-fa
         <div class="exp-role">Senior IT Engineer / IT Team Lead</div>
         <div class="exp-sector">Digital Media & Entertainment</div>
         <ul class="exp-bullets">
-          <li>Led IT operations for ~1,000 staff across 6 branch offices including dedicated livestream studio environments.</li>
-          <li>Planned and deployed network infrastructure for all branches — Mikrotik, DrayTek, Aruba APs, NAS storage for high-bandwidth video production workflows.</li>
-          <li>Led company-wide Lark ERP deployment — designed digital workflows covering HR, procurement, and finance operations.</li>
-          <li>Managed full IT procurement lifecycle across all locations: needs assessment, vendor negotiation, deployment, and disposal.</li>
-          <li>Recruited and managed the IT support team; built ticketing workflows and escalation procedures for 1,000+ users.</li>
+          <li>Led IT operations for approximately 1,000 staff across 6 branch offices, including the setup and maintenance of dedicated livestream studio environments.</li>
+          <li>Infrastructure rollout — Planned and deployed network infrastructure for all branches: Mikrotik and DrayTek routers, managed switches, Aruba wireless APs, and NAS storage, ensuring stable connectivity for high-bandwidth livestream and video production workflows.</li>
+          <li>Led the deployment of Lark as the company-wide ERP and collaboration platform — designed and implemented digital workflows covering HR, procurement, and finance operations.</li>
+          <li>Deployed and maintained Zabbix monitoring across all sites, enabling real-time visibility into network and server performance.</li>
+          <li>Managed the full IT procurement lifecycle — from needs assessment and vendor negotiation to purchase, deployment, and asset disposal — across all locations.</li>
+          <li>Recruited, onboarded, and managed the IT support team; built ticketing workflows and escalation procedures to handle the 1,000+ user base efficiently.</li>
+          <li>Developed and enforced company-wide IT SOPs that standardized support processes and reduced recurring incident resolution time.</li>
+          <li>Provided Tier 2/3 support for hardware, software, network, and application issues; proactively recommended equipment upgrades aligned with business milestones.</li>
         </ul>
         <div class="exp-tags">
-          <span class="exp-chip">Mikrotik</span><span class="exp-chip">DrayTek</span><span class="exp-chip">Aruba</span><span class="exp-chip">Lark ERP</span><span class="exp-chip">Zabbix</span><span class="exp-chip">Team Lead</span><span class="exp-chip">Procurement</span>
+          <span class="exp-chip">Mikrotik</span><span class="exp-chip">DrayTek</span><span class="exp-chip">Aruba</span><span class="exp-chip">Lark ERP</span><span class="exp-chip">Zabbix</span><span class="exp-chip">Team Lead</span><span class="exp-chip">Procurement</span><span class="exp-chip">Tier 2/3</span>
         </div>
       </div>
     </div>
@@ -307,14 +329,15 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-fa
       </div>
       <div>
         <div class="exp-role">IT Support & QA Engineer</div>
-        <div class="exp-sector">EdTech</div>
+        <div class="exp-sector">EdTech — Education Development JSC</div>
         <ul class="exp-bullets">
-          <li>Provided technical support for company servers and business applications across an education software company serving schools nationwide.</li>
-          <li>Managed hardware and software asset lifecycle including procurement coordination and vendor liaison.</li>
-          <li>Performed software QA testing to validate product reliability prior to client rollouts.</li>
+          <li>Provided technical support for company servers and business applications; diagnosed and resolved hardware, software, network, and camera system issues.</li>
+          <li>Managed hardware and software asset lifecycle including procurement coordination, tracking, and vendor liaison for new solution deployments.</li>
+          <li>Performed software quality assurance (QA) testing to validate product reliability prior to client rollouts.</li>
+          <li>Coordinated staff scheduling and supported cross-functional teams on technical implementation projects.</li>
         </ul>
         <div class="exp-tags">
-          <span class="exp-chip">IT Support</span><span class="exp-chip">Asset Mgmt</span><span class="exp-chip">QA Testing</span>
+          <span class="exp-chip">IT Support</span><span class="exp-chip">Asset Mgmt</span><span class="exp-chip">QA Testing</span><span class="exp-chip">Vendor Liaison</span>
         </div>
       </div>
     </div>
@@ -326,11 +349,11 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-fa
       </div>
       <div>
         <div class="exp-role">Tester / Developer</div>
-        <div class="exp-sector">Software QA & Development</div>
+        <div class="exp-sector">Software QA & Development Services</div>
         <ul class="exp-bullets">
           <li>Executed structured software test plans and contributed to ERP system deployments and e-commerce platform development.</li>
         </ul>
-        <div class="exp-tags"><span class="exp-chip">QA</span><span class="exp-chip">ERP</span><span class="exp-chip">E-commerce</span></div>
+        <div class="exp-tags"><span class="exp-chip">QA Testing</span><span class="exp-chip">ERP</span><span class="exp-chip">E-commerce</span></div>
       </div>
     </div>
 
@@ -344,9 +367,9 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-fa
         <div class="exp-sector">South Korea</div>
         <ul class="exp-bullets">
           <li>Developed Bitcoin transaction simulations on a Blockchain platform and built an AI game (Wumpus World) as part of academic research.</li>
-          <li>Founded and administered the VSAU (Vietnamese Students Association at Ulsan University) community organisation.</li>
+          <li>Founded and administered the VSAU (Vietnamese Students Association at Ulsan University) community organisation — <span style="color:var(--accent2);font-size:12px;">sinhvienulsan.net</span></li>
         </ul>
-        <div class="exp-tags"><span class="exp-chip">Blockchain</span><span class="exp-chip">AI</span><span class="exp-chip">Research</span></div>
+        <div class="exp-tags"><span class="exp-chip">Blockchain</span><span class="exp-chip">AI Research</span><span class="exp-chip">Community</span></div>
       </div>
     </div>
 
