@@ -459,7 +459,7 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-fa
 <!-- Tool Hub (hidden, password protected) -->
 <div id="toolhub-wrap" style="display:none;max-width:960px;margin:0 auto;padding:80px 24px 0;">
 <div id="toolhub" style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px 28px;">
-  <div class="s-label" style="margin-bottom:4px">Internal · The Sentry</div>
+  <div class="s-label" style="margin-bottom:4px">Internal</div>
   <h2 style="margin-bottom:8px">IT Tool Hub</h2>
   <div class="divider"></div>
 
@@ -467,7 +467,7 @@ footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-fa
   <div id="pwGate">
     <div class="pw-gate">
       <h3>🔒 Internal access only</h3>
-      <p>Khu vực dành riêng cho team The Sentry</p>
+      <p>Quay ra đi nào</p>
       <div class="pw-row">
         <input type="password" id="pwInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()">
         <button onclick="checkPw()">Unlock</button>
@@ -644,7 +644,7 @@ async function checkPw() {
   try {
     const config = await apiGet('config');
     const pwRow = config.find(r => r.key === 'password');
-    const correctPw = pwRow ? String(pwRow.value) : 'sentry2026';
+    const correctPw = pwRow ? String(pwRow.value) : 'kiemcaigi?';
     if (val === correctPw) {
       document.getElementById('pwGate').style.display = 'none';
       document.getElementById('toolContent').style.display = 'block';
